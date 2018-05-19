@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3 - JS Clock</title>
+</head>
+<body>
+    <div class="clock">
+        <div class="clock-face">
+            <div class="hand hour-hand"></div>
+            <div class="hand min-hand"></div>
+            <div class="hand sec-hand"></div>
+        </div>
+    </div>
+    
+
+    <style>
+        html {
+            background: gray;
+            background-size: cover;
+            text-align: center;
+        }
+        
+        .clock {
+            width: 30rem;
+            height: 30rem;
+            border:  20px solid white;
+            border-radius: 50%;
+            margin: 50px auto;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .clock-face {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform: translateY(-3px);
+        }
+
+        .hand {
+            width: 50%;
+            height: 6px;
+            background: black;
+            position: absolute;
+            top: 50%;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition-timing-function: (0.1, 2.7, 0.58, 1);
+        }
+    </style>
+
+    <script>
+        const secondHand = document.querySelector(".sec-hand");
+    
+
+        function setDate() {
+            const now = new Date();
+            const sec = now.getSeconds();
+            console.log(sec);
+            const secondsDegrees = ((sec / 60) * 360) + 90;
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+            const mins = now.getMinutes();
+            const minsDegrees = ((mins / 60) * 360) + 90;
+            
+        }
+
+        setInterval(setDate, 1000);
+    </script>
+</body>
+</html>
